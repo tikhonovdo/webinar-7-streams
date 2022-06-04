@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public class Main {
@@ -111,6 +112,23 @@ class Task {
     @Override
     public String toString() {
         return "Task" + id;
+    }
+}
+
+class Car {
+    private final int id;
+
+    public Car(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return 1;
+    }
+
+    @Override
+    public String toString() {
+        return "Car" + id;
     }
 }
 

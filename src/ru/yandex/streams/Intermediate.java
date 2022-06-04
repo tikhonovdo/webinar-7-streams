@@ -1,5 +1,6 @@
 package ru.yandex.streams;
 
+import java.util.Comparator;
 import java.util.Random;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -18,6 +19,7 @@ public class Intermediate {
         System.out.println("\n=== filter example ===");
         getTasksStream()
                 .filter(t -> t.getId() % 2 == 0)
+                //.sorted(Comparator.comparingInt(Task::getId))
                 .forEach(System.out::println);
 
 
@@ -39,7 +41,9 @@ public class Intermediate {
         new Random().ints()
                 .limit(10)
                 .peek(i -> System.out.println("peek: " + i))
-                .sorted()
+                //.boxed()
+                //.sorted(Comparator.reverseOrder())
+                //.filter(i -> i % 2 == 1)
                 .forEach(System.out::println);
 
 
