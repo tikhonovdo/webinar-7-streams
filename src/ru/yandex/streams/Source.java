@@ -15,10 +15,16 @@ public class Source {
 
         System.out.println("=== ofNullable example ===");
         Integer n = null;
+
+        System.out.print("ofNullable: ");
         Stream.ofNullable(n)
                 .forEach(System.out::println);
+        System.out.println();
+
+        System.out.print("of: ");
         Stream.of(n)
                 .forEach(System.out::println);
+        System.out.println();
 
 
         System.out.println("\n=== generate example ===");

@@ -1,7 +1,5 @@
 package ru.yandex.lambda;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -90,18 +88,6 @@ public class Main {
         Consumer<Task> printId = t -> System.out.println(t.getId());
         Consumer<Task> printToString = t -> System.out.println(t.toString());
         forEach(tasks, printId.andThen(printToString));
-
-        /*
-        forEach2(tasks, (t1, t2) -> {
-            try (FileWriter fw = new FileWriter("file.txt")) {
-                return t1.getId() - t1.getId();
-            }
-        });
-
-         */
-
-
-
     }
 
     private static void forEach(List<Task> tasks, Consumer<Task> consumer) {
@@ -109,16 +95,6 @@ public class Main {
             consumer.accept(t);
         }
     }
-
-    private static void forEach2(List<Task> tasks, Test<Task> consumer) throws IOException {
-        for (Task t : tasks) {
-            consumer.compare(t, t);
-        }
-    }
-}
-
-interface Test<T> {
-    int compare(T o1, T o2) throws IOException;
 }
 
 class Task {

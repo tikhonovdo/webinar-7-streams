@@ -57,9 +57,9 @@ public class Terminal {
                 .noneMatch(i -> i > 0);
         System.out.println("noneMatchPositive1: " + noneMatchPositive);
 
-        boolean noneMatchPositive2 = Stream.of(1,3,6,4,5)
+        boolean noneMatchNegative = Stream.of(1,3,6,4,5)
                 .noneMatch(i -> i < 0);
-        System.out.println("noneMatchPositive2: " + noneMatchPositive2);
+        System.out.println("noneMatchPositive2: " + noneMatchNegative);
 
 
         System.out.println("\n=== min, max example ===");
