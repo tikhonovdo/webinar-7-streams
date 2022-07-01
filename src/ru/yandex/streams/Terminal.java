@@ -73,12 +73,13 @@ public class Terminal {
 
 
         System.out.println("\n=== reduce example ===");
-        int reduceResult = Stream.iterate(1, i -> i <= 5, i -> i + 1)
-                .reduce(1, (acum, cur) -> acum * cur);
-        System.out.println(reduceResult);
+        int factorial = Stream.iterate(1, i -> i <= 5, i -> i + 1)
+                .peek(i -> System.out.println("peek: " + i))
+                .reduce(1, (accumulator, current) -> accumulator * current);
+        System.out.println(factorial);
 
         String concat = Stream.of("a","b","c","d")
-                        .reduce("", (accum, cur) -> accum + cur);
+                        .reduce("", (accumulator, current) -> accumulator + current);
         System.out.println(concat);
 
         System.out.println("\n=== collect example ===");
@@ -109,7 +110,7 @@ public class Terminal {
 
 
         System.out.println("\n=== average example ===");
-        OptionalDouble avg = Stream.of(1, 2, 3, 1, 2, 3)
+        OptionalDouble avg = Stream.of(1, 2, 3, 1, 2, 3, 5)
                 .mapToInt(Integer::intValue)
                 .average();
         System.out.println(avg.orElse(0));

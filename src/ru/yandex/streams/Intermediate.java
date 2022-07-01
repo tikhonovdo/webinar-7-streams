@@ -11,20 +11,20 @@ public class Intermediate {
 
         System.out.println("\n=== map example ===");
         getTasksStream()
-                .map(t -> t.getId())
+                .map(task -> task.getId())
                 .forEach(System.out::println);
 
 
         System.out.println("\n=== filter example ===");
         getTasksStream()
-                .filter(t -> t.getId() % 2 == 0)
+                .filter(task -> task.getId() % 2 == 0)
                 .forEach(System.out::println);
 
 
         System.out.println("\n=== flatMap example ===");
         getTasksStream()
-                .map(t -> t.getSubtasksIds())
-                .flatMap(s -> s.stream())
+                .map(task -> task.getSubtasksIds())
+                .flatMap(list -> list.stream())
                 .forEach(System.out::println);
 
 
@@ -57,6 +57,11 @@ public class Intermediate {
         System.out.println("\n=== takeWhile2 example ===");
         Stream.of(1,2,3,4,5,1,2,3)
                 .takeWhile(t -> t < 5)
+                .forEach(System.out::println);
+
+        System.out.println("\n=== takeWhile3 example ===");
+        Stream.of(1,2,3,4,5,1,2,3)
+                .takeWhile(t -> t != 5)
                 .forEach(System.out::println);
 
 

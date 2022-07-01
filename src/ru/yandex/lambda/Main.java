@@ -10,16 +10,26 @@ public class Main {
     public static void main(String[] args) {
 
         // Отдельный класс
+        System.out.print("1: ");
         sortWithSeparateClass();
 
         // Анонимный класс
+        System.out.print("2: ");
         sortWithAnonymousClass();
 
         // Лямбда
+        System.out.print("3: ");
         sortWithLambda();
 
         // Лямбда 2
+        System.out.print("4: ");
         sortWithLambda2();
+
+        // Сравнение лямбды и анонимног класса
+        anonymousClassAndLambdaDifferences();
+
+        // Пример с effectively final переменной в лямбде
+        effectivelyFinal();
 
         // Ссылка на метод (method reference)
         sortWithMethodReference();
@@ -74,6 +84,35 @@ public class Main {
         System.out.println(tasks);
     }
 
+    private static void anonymousClassAndLambdaDifferences() {
+        List<Task> tasks = generateTasks();
+
+        tasks.sort(new Comparator<Task>() {
+            @Override
+            public int compare(Task o1, Task o2) {
+                Comparator<Task> comparator = this;
+                return o1.getId() - o2.getId();
+            }
+        });
+        tasks.sort((o1, o2) -> {
+//            Comparator<Task> comparator = this;
+            return o1.getId() - o2.getId();
+        });
+
+        /* Hey! I'm */ new MrMeeseeks(); // Look at me!
+    }
+
+    private static void effectivelyFinal() {
+        List<Task> tasks = generateTasks();
+
+        int i = 1;
+        tasks.sort((o1, o2) -> {
+            // uncomment me and everything will broke!
+            //i++;
+            return i + o1.getId() - o2.getId();
+        });
+    }
+
     private static void sortWithMethodReference() {
         List<Task> tasks = generateTasks();
 
@@ -118,5 +157,22 @@ class TaskComparatorById implements Comparator<Task> {
     @Override
     public int compare(Task o1, Task o2) {
         return o1.getId() - o2.getId();
+    }
+}
+
+class MrMeeseeks {
+    public void thisInsideLambdaInsideMrMeeseeks() {
+        Comparator<Task> anonymousClassComparator = new Comparator<Task>() {
+            @Override
+            public int compare(Task o1, Task o2) {
+                Comparator<Task> comparator = this;
+                return o1.getId() - o2.getId();
+            }
+        };
+
+        Comparator<Task> lambdaComparator = (o1, o2) -> {
+            MrMeeseeks mrMeeseeks = this;
+            return o1.getId() - o2.getId();
+        };
     }
 }

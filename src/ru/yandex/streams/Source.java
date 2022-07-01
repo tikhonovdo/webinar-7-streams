@@ -9,9 +9,24 @@ import java.util.stream.Stream;
 public class Source {
     public static void main(String[] args) {
 
+        System.out.println("\n=== collection.stream() example ===");
+        Collection<Integer> intCollection = getNumbers();
+        intCollection.stream()
+                .forEach(System.out::println);
+
+
+        System.out.println("\n=== Arrays.stream() example ===");
+        Integer[] intAray = getNumbersArray();
+        Arrays.stream(intAray)
+                .forEach(System.out::println);
+
+
         Stream<Integer> numbers = Stream.empty();
 
+
         numbers = Stream.of(1, 2, 3);
+        numbers.forEach(System.out::println);
+
 
         System.out.println("=== ofNullable example ===");
         Integer n = null;
@@ -38,20 +53,9 @@ public class Source {
                 .limit(10)
                 .forEach(System.out::println);
 
+
         System.out.println("\n=== iterate (with condition) example ===");
-        Stream.iterate(0, v -> v < 10, v -> v + 1)
-                .forEach(System.out::println);
-
-
-        System.out.println("\n=== collection.stream() example ===");
-        Collection<Integer> intCollection = getNumbers();
-        intCollection.stream()
-                .forEach(System.out::println);
-
-
-        System.out.println("\n=== Arrays.stream() example ===");
-        Integer[] intAray = getNumbersArray();
-        Arrays.stream(intAray)
+        Stream.iterate(0, v -> v < 5, v -> v + 1)
                 .forEach(System.out::println);
 
 
